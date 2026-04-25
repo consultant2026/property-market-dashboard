@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data files - KEEP LOCAL
+auction_history/
+auction_metrics/
+auction_suburb/
+*.log
+*.csv
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Local scripts (data collection)
+collect_*.py
+process_*.py
+calculate_*.py
+extract_*.py
+format_*.py
+merge_*.py
+
+# Shell scripts
+*.sh
+
+# Flask apps (not needed for static deployment)
+app.py
+auction_dashboard.py
+auction_dashboard_clean.py
+auction_metrics_app.py
+auction_metrics_dashboard.py
+dashboard_*/
