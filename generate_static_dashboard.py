@@ -19,9 +19,9 @@ CITIES = {
 }
 
 def load_city_data(city):
-    """Load auction data for a specific city."""
-    # Adjust the path based on your actual data structure
-    data_path = f'auction_history/{city}_auctions.csv'
+    """Load auction metrics data for a specific city."""
+    # Read from auction_metrics/metrics/ folder
+    data_path = f'auction_metrics/metrics/{city}_metrics.csv'
     
     if not os.path.exists(data_path):
         print(f"Warning: Data file not found for {city}: {data_path}")
@@ -39,21 +39,32 @@ def process_data_for_city(df, city):
     if df is None or df.empty:
         return None
     
-    # Convert date column if needed
-    if 'date' in df.columns:
-        df['date'] = pd.to_datetime(df['date'])
+    # Convert date column
+    if 'Date' in df.columns:
+        df['Date'] = pd.to_datetime(df['Date'])
+        dates = df['Date'].dt.strftime('%Y-%m-%d').tolist()
+    else:
+        dates = []
     
-    # Extract the data needed for the dashboard
-    # Adjust these column names based on your actual data structure
+    # Extract data from metrics CSV
+    # CSV columns: Date, Auctions scheduled, RealTrend, Market Tightness, UnSold Auctions, Median Price ($)
+    scheduled = df.get('Auctions scheduled', []).tolist()
+    realtrend = df.get('RealTrend', []).tolist()
+    market_tightness = df.get('Market Tightness', []).tolist()
+    unsold_percent = df.get('UnSold Auctions', []).tolist()
+    
+    # Calculate 8-week moving average for RealTrend
+    realtrend_ma = pd.Series(realtrend).rolling(window=8, min_periods=1).mean().tolist()
+    
     data = {
         'city': city,
         'city_display': CITIES.get(city, city),
-        'dates': df.get('date', []).tolist(),
-        'realtrend': df.get('realtrend', []).tolist(),
-        'realtrend_ma': df.get('realtrend_ma', []).tolist(),
-        'scheduled': df.get('scheduled', []).tolist(),
-        'market_tightness': df.get('market_tightness', []).tolist(),
-        'unsold_percent': df.get('unsold_percent', []).tolist(),
+        'dates': dates,
+        'realtrend': realtrend,
+        'realtrend_ma': realtrend_ma,
+        'scheduled': scheduled,
+        'market_tightness': market_tightness,
+        'unsold_percent': unsold_percent,
         'last_updated': datetime.now().isoformat()
     }
     
