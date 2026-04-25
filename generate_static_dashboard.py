@@ -79,7 +79,7 @@ def generate_html_with_data(all_city_data):
     html_template = f"""<!DOCTYPE html>
 <html>
 <head>
-    <title>Auction Market Dashboard</title>
+    <title>Property Market Dashboard</title>
     <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
     <style>
         body {{ 
@@ -159,7 +159,7 @@ def generate_html_with_data(all_city_data):
 <body>
     <div class="container">
         <div class="page-header">
-            <h1>Auction Market Dashboard</h1>
+            <h1>Property Market Dashboard</h1>
             <div id="last-updated" class="last-updated">Loading...</div>
             <div class="time-range-buttons">
                 <button class="time-range-btn active" data-months="3">3 Months</button>
