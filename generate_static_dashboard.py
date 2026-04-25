@@ -80,6 +80,15 @@ def generate_html_with_data(all_city_data):
 <html>
 <head>
     <title>Property Market Dashboard</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5FQNCY0ZCN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){{dataLayer.push(arguments);}}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5FQNCY0ZCN');
+    </script>
     <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
     <style>
         body {{ 
