@@ -15,7 +15,8 @@ CITIES = {
     'melbourne': 'Melbourne',
     'brisbane': 'Brisbane',
     'adelaide': 'Adelaide',
-    'canberra': 'Canberra'
+    'canberra': 'Canberra',
+    'perth': 'Perth'
 }
 
 def load_city_data(city):
